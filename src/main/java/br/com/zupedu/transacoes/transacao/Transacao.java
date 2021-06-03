@@ -1,28 +1,32 @@
-package br.com.zupedu.transacoes.messagens;
+package br.com.zupedu.transacoes.transacao;
 
-import br.com.zupedu.transacoes.messagens.CartaoResponseKafka;
-import br.com.zupedu.transacoes.messagens.EstabelecimentoResponseKafka;
-import br.com.zupedu.transacoes.transacao.Transacao;
-
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-public class TransacaoResponseKafka {
+@Entity
+public class Transacao {
+    @Id
     private String id;
     private BigDecimal valor;
-    private EstabelecimentoResponseKafka estabelecimento;
-    private CartaoResponseKafka cartao;
+    @Embedded
+    private Estabelecimento estabelecimento;
+    @Embedded
+    private Cartao cartao;
     private LocalDateTime efetivadaEm;
 
-    public TransacaoResponseKafka(String id, BigDecimal valor, EstabelecimentoResponseKafka estabelecimento, CartaoResponseKafka cartao, LocalDateTime efetivadaEm) {
+    public Transacao(String id, BigDecimal valor, Estabelecimento estabelecimento, Cartao cartao, LocalDateTime efetivadaEm) {
         this.id = id;
         this.valor = valor;
         this.estabelecimento = estabelecimento;
         this.cartao = cartao;
         this.efetivadaEm = efetivadaEm;
     }
+
     @Deprecated
-    public TransacaoResponseKafka() {
+    public Transacao() {
     }
 
     public String getId() {
@@ -33,24 +37,21 @@ public class TransacaoResponseKafka {
         return valor;
     }
 
-    public EstabelecimentoResponseKafka getEstabelecimento() {
+    public Estabelecimento getEstabelecimento() {
         return estabelecimento;
     }
 
-    public CartaoResponseKafka getCartao() {
+    public Cartao getCartao() {
         return cartao;
     }
 
     public LocalDateTime getEfetivadaEm() {
         return efetivadaEm;
     }
-    public Transacao paraTransacao(){
-        return new Transacao(id,valor,estabelecimento.paraEstabelecimento(),cartao.paraCartao(),efetivadaEm);
-    }
 
     @Override
     public String toString() {
-        return "TransacaoResponseKafka{" +
+        return "Transacao{" +
                 "id='" + id + '\'' +
                 ", valor=" + valor +
                 ", estabelecimento=" + estabelecimento +

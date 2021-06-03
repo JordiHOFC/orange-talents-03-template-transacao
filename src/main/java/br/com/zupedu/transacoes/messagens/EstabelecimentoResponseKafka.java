@@ -1,5 +1,7 @@
 package br.com.zupedu.transacoes.messagens;
 
+import br.com.zupedu.transacoes.transacao.Estabelecimento;
+
 public class EstabelecimentoResponseKafka {
     private String nome;
     private String cidade;
@@ -10,8 +12,12 @@ public class EstabelecimentoResponseKafka {
         this.cidade = cidade;
         this.endereco = endereco;
     }
-
+    @Deprecated
     public EstabelecimentoResponseKafka() {
+    }
+
+    public Estabelecimento paraEstabelecimento(){
+        return new Estabelecimento(nome,cidade,endereco);
     }
 
     public String getNome() {
