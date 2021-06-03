@@ -118,11 +118,11 @@ services:
   #
   #  meu-transacoes:
   #    build: ./
-  #    image: jordi/propostas:1.9
+  #    image: jordi/transacoes:0.1
   #    ports:
   #      - 8080:8080
   #    environment:
-  #      DB_URL: jdbc:mysql://mysql:3306/propostas
+  #      DB_URL: jdbc:mysql://mysql:3306/transacoes
   #      DB_USERNAME: root
   #      DB_PASSWORD: root
   #      SYSTEM_FINANCE: http://analise:9999/api/solicitacao
